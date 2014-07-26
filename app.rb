@@ -7,11 +7,6 @@ require 'pg'
 
 require './model/plants'
 
-# ActiveRecord::Base.establish_connection(
-#     :adapter => 'sqlite3',
-#     :database => 'development.sqlite3'
-# )
-
 ActiveRecord::Base.establish_connection(YAML::load(File.open('config/database.yml'))['production'])
 
 use Rack::PostBodyContentTypeParser
