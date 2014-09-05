@@ -7,7 +7,8 @@ require 'pg'
 
 require './model/plants'
 
-ActiveRecord::Base.establish_connection(YAML::load(File.open('config/database.yml'))['production'])
+dbconfig = YAML.load(ERB.new(File.read(File.join("config","database.yml"))).result)
+ActiveRecord::Base.establish_connection(dbconfig['production'])
 
 use Rack::PostBodyContentTypeParser
 

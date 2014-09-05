@@ -1,4 +1,5 @@
 require 'active_record'
+require 'erb'
 require 'yaml'
 require 'logger'
 
@@ -10,6 +11,7 @@ task :migrate => :environment do
 end
 
 task :environment do
-    ActiveRecord::Base.establish_connection(YAML::load(File.open('config/database.yml'))['production'])
+    dbconfig = YAML.load(ERB.new(File.read(File.join("config","database.yml"))).result)
+    ActiveRecord::Base.establish_connection(dbconfig['production'])
     ActiveRecord::Base.logger = Logger.new(File.open('database.log', 'a'))
 end
