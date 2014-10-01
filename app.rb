@@ -11,7 +11,7 @@ require './model/plants'
 class PlantApplication < Sinatra::Base
     dbconfig = YAML.load(ERB.new(File.read(File.join("config","database.yml"))).result)
     
-    configure :development do
+    configure :development, :test do
         ActiveRecord::Base.establish_connection(dbconfig['development'])
     end
 

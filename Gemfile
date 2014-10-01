@@ -9,6 +9,9 @@ gem 'rack-contrib'
 
 group :development, :test do
     gem 'sqlite3'
+    gem 'rack-test'
+    gem 'rspec'
+    gem 'database_cleaner'
 end
 
 group :production do
