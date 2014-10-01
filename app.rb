@@ -3,19 +3,18 @@ require 'rack/contrib'
 require 'active_record'
 require 'json'
 
-require 'pg'
-require 'sqlite3'
-
 require './model/plants'
 
 class PlantApplication < Sinatra::Base
     dbconfig = YAML.load(ERB.new(File.read(File.join("config","database.yml"))).result)
     
     configure :development, :test do
+        require 'sqlite3'
         ActiveRecord::Base.establish_connection(dbconfig['development'])
     end
 
     configure :production do
+        require 'pg'
         ActiveRecord::Base.establish_connection(dbconfig['production'])
     end
 
