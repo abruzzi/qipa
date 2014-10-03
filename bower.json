@@ -1,0 +1,24 @@
+{
+  "name": "qipa-frontend",
+  "version": "0.1.0",
+  "authors": [
+    "Qiu Juntao <juntao.qiu@gmail.com>"
+  ],
+  "description": "qipa is a plants collection application",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-resource": "~1.2.25",
+    "angular-route": "~1.2.25",
+    "angularjs": "~1.2.25",
+    "bootstrap": "~3.2.0"
+  }
+}

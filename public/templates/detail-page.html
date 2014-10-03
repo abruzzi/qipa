@@ -1,0 +1,31 @@
+<div class="container show-me-up" ng-controller="DetailController">
+    <div class="row">
+        <div class="col-lg-2 col-md-2">
+            <img class="img-responsive" src="http://placehold.it/80x80">
+        </div>
+        <div class="col-lg-10 col-md-10">
+            <h1>This is a really weired plant</h1>
+        </div>
+    </div>
+    <div class="row">
+        <hr>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-4">
+            <img class="img-responsive" src="http://placehold.it/340x320">
+        </div>
+        <div class="col-lg-8 col-md-8">
+            <p>{{plant.description}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <hr>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3" ng-repeat="recommendation in recommendations">
+            <img class="img-responsive" src="http://placehold.it/250x300" alt="170x180">
+            <h4>{{recommendation.name}}</h4>
+            <p>{{recommendation.description}}</p>
+        </div>
+    </div>
+</div>

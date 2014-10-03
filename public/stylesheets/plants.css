@@ -1,0 +1,17 @@
+body {
+  min-height: 1000px;
+}
+
+.footer {
+    padding: 20px 0;
+}
+
+.item p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.show-me-up {
+	margin-top: 60px;
+}

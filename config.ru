@@ -1,3 +1,3 @@
 require File.dirname(__FILE__) + '/app'
 
-run PlantApplication
+run Rack::Cascade.new [PlantApplication, FrontendApplication]

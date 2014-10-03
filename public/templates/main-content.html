@@ -1,0 +1,53 @@
+<div id="carousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel" data-slide-to="1"></li>
+        <li data-target="#carousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="images/carnivorous-plant-image.jpg" alt="Carnivorous Plant">
+        </div>
+        <div class="item">
+            <img src="images/cauliflower.jpg" alt="Cauliflower">
+        </div>
+        <div class="item">
+            <img src="images/mushroom-22200-1920x1080.jpg" alt="Mushroom">
+        </div>
+    </div>
+    <a class="left carousel-control" href="#carousel" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <a class="right carousel-control" href="#carousel" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+</div>
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-lg-3">
+            <div class="list-group">
+              <a href="#" class="list-group-item">花朵植物</a>
+              <a href="#" class="list-group-item active">草本植物</a>
+              <a href="#" class="list-group-item">蕨类植物</a>
+              <a href="#" class="list-group-item">木本植物</a>
+              <a href="#" class="list-group-item">孢子植物</a>
+            </div>
+        </div>
+
+        <div class="col-lg-9" ng-controller="PlantController">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 col-md-4 col-xs-12" ng-repeat="plant in plants">
+                    <div class="item thumbnail">
+                        <a href="#">
+                            <img ng-src="http://placehold.it/270x300">
+                        </a>
+                        <h4><a href="#">{{plant.name}}</a></h4>
+                        <p>{{plant.description}}</p>
+                        <button class="btn btn-success" ng-click="collect($index)">Collect</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
