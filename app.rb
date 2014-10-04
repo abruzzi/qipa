@@ -24,7 +24,7 @@ class PlantApplication < Sinatra::Base
         ActiveRecord::Base.establish_connection(dbconfig['production'])
     end
 
-    use Rack::PostBodyContentTypeParser
+    # use Rack::PostBodyContentTypeParser
 
     get '/plants' do
         plants = Plant.all || []
@@ -37,12 +37,13 @@ class PlantApplication < Sinatra::Base
     end
 
     post '/plants' do
-        p params
         plant = Plant.create(:name => params[:name],
                             :description => params[:description],
                             :created_at => Time.now,
                             :updated_at => Time.now)
         
+        plant.image = params[:image]
+
         if plant.save
             [201, "/plants/#{plant['id']}"]
         end

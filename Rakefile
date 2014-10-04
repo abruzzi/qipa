@@ -10,7 +10,7 @@ end
 
 task :environment do
     dbconfig = YAML.load(ERB.new(File.read(File.join("config","database.yml"))).result)
-    env = ENV["ENV"] ? ENV["ENV"] : 'production'
+    env = ENV["RACK_ENV"]
     ActiveRecord::Base.establish_connection(dbconfig[env])
     ActiveRecord::Base.logger = Logger.new(File.open('database.log', 'a'))
 end

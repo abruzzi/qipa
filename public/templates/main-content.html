@@ -39,11 +39,11 @@
                 <div class="col-lg-3 col-sm-6 col-md-4 col-xs-12" ng-repeat="plant in plants">
                     <div class="item thumbnail">
                         <a href="#">
-                            <img ng-src="http://placehold.it/270x300">
+                            <img ng-src="{{plant.image.thumb.url}}">
                         </a>
                         <h4><a href="#">{{plant.name}}</a></h4>
                         <p>{{plant.description}}</p>
-                        <button class="btn btn-success" ng-click="collect($index)">Collect</button>
+                        <button class="btn btn-success" ng-click="collect(plant.id)">Collect</button>
                     </div>
                 </div>
             </div>

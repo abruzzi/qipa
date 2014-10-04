@@ -5,7 +5,8 @@ ruby '1.9.3'
 gem 'activerecord'
 gem 'sinatra'
 gem 'rack-contrib'
-
+gem 'carrierwave'
+gem "mini_magick"
 
 group :development, :test do
     gem 'sqlite3'

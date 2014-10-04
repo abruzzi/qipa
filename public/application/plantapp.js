@@ -28,16 +28,31 @@ app.controller('DetailController',
 	$scope.recommendations = RecommendationService.query({id: $routeParams.id});
 }]);
 
-app.controller('AddPlantController', ['$scope', '$location', 'PlantService', function($scope, $location, PlantService) {
+app.directive('filesModel', function (){
+  return {
+    controller: function($parse, $element, $attrs, $scope){
+      var exp = $parse($attrs.filesModel);
+
+      $element.on('change', function(){
+        exp.assign($scope, this.files);
+        $scope.$apply();
+      });
+    }
+  };
+});
+
+app.controller('AddPlantController', ['$scope', '$location', 'PlantService', 
+	function($scope, $location, PlantService) {
+	
 	$scope.plant = {
 		name: "",
-		description: ""
+		description: "",
+		image: null
 	};
 
 	$scope.save = function() {
 		PlantService.save($scope.plant, function() {
-			console.log($scope.plant);
-			//$location.path("/");
+			$location.path("/");
 		});
 	}
 }]);
@@ -56,4 +71,28 @@ app.config(['$routeProvider', function($routeProvider) {
 		templateUrl: 'templates/detail-page.html',
 		controller: 'DetailController'
 	});
-}]);
+}]).config(function ($httpProvider) {
+  $httpProvider.defaults.transformRequest = function(data) {
+    if (data === undefined)
+      return data;
+
+    var fd = new FormData();
+    angular.forEach(data, function(value, key) {
+      if (value instanceof FileList) {
+        if (value.length == 1) {
+          fd.append(key, value[0]);
+        } else {
+          angular.forEach(value, function(file, index) {
+            fd.append(key + '_' + index, file);
+          });
+        }
+      } else {
+        fd.append(key, value);
+      }
+    });
+
+    return fd;
+  }
+
+  $httpProvider.defaults.headers.post['Content-Type'] = undefined;
+});;
