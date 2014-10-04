@@ -15,10 +15,14 @@ task :environment do
     ActiveRecord::Base.logger = Logger.new(File.open('database.log', 'a'))
 end
 
-require 'rspec/core/rake_task'
+if ENV["RACK_ENV"] == 'development'
+	require 'rspec/core/rake_task'
 
-RSpec::Core::RakeTask.new :specs do |task|
-	task.pattern = Dir['spec/**/*_spec.rb']
+	RSpec::Core::RakeTask.new :specs do |task|
+		task.pattern = Dir['spec/**/*_spec.rb']
+	end
+
+	task :default => ['specs']
 end
 
-task :default => ['specs']
+task :default => ['migrate']
