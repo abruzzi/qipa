@@ -47,7 +47,11 @@ class PlantApplication < Sinatra::Base
         if plant.save
             [201, "/plants/#{plant['id']}"]
         end
-    end    
+    end
+
+    after do
+        ActiveRecord::Base.connection.close
+    end
 end
 
 
